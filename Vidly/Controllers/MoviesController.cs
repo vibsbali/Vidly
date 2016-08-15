@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -14,7 +16,19 @@ namespace Vidly.Controllers
                 Name = "Shrek!"
             };
 
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Customer 1"},
+                new Customer {Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Customers = customers,
+                Movie = movie
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Edit(int id)
