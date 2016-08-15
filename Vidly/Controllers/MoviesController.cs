@@ -16,5 +16,20 @@ namespace Vidly.Controllers
 
             return View(movie);
         }
+
+        public ActionResult Edit(int id)
+        {
+            return Content("Id = " + id);
+        }
+
+        public ActionResult Index(int pageIndex = 1, string sortBy = "Name")
+        {
+            return Content($"pageIndex={pageIndex}&sortBy={sortBy}");
+        }
+
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year + "/" + month);
+        }
     }
 }
