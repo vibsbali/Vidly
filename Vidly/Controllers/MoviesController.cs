@@ -42,7 +42,7 @@ namespace Vidly.Controllers
         }
 
         //Created Attribute based route. We can also contraint using following min, max, minlength, maxlength, int, float, guid
-        [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d):range(1, 12)}")]
+        //[Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d):range(1, 12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
