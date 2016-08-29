@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Vidly.Models;
-using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -16,19 +14,19 @@ namespace Vidly.Controllers
                 Name = "Shrek!"
             };
 
-            var customers = new List<Customer>
-            {
-                new Customer {Name = "John Smith"},
-                new Customer {Name = "Mary Williams"}
-            };
+            //var customers = new List<Customer>
+            //{
+            //    new Customer {Name = "John Smith"},
+            //    new Customer {Name = "Mary Williams"}
+            //};
 
-            var viewModel = new RandomMovieViewModel
-            {
-                Customers = customers,
-                Movie = movie
-            };
+            //var viewModel = new RandomMovieViewModel
+            //{
+            //    Customers = customers,
+            //    Movie = movie
+            //};
 
-            return View(viewModel);
+            return View(movie);
         }
 
         public ActionResult Edit(int id)
