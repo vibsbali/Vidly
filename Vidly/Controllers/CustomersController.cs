@@ -26,9 +26,24 @@ namespace Vidly.Controllers
             var viewModel = new NewCustomerViewModel
             {
                 MembershipTypes = membershipTypes
-            };  
+            };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(NewCustomerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var customer = model.Customer;
+                context.Customers.Add(customer);
+                context.SaveChanges();
+
+                return RedirectToAction("Index", "Customers");
+            }
+
+            return RedirectToAction("New");
         }
 
         // GET: Customers
