@@ -32,18 +32,29 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CustomerFormViewModel model)
+        public ActionResult Save(CustomerFormViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var customer = model.Customer;
-                context.Customers.Add(customer);
+                if (model.Customer.Id == 0)
+                {
+                    context.Customers.Add(customer);
+                }
+                else
+                {
+                    var customerFromDb = context.Customers.Single(c => c.Id == customer.Id);
+                    customerFromDb.Name = customer.Name;
+                    customerFromDb.DateOfBirth = customer.DateOfBirth;
+                    customerFromDb.MembershipTypeId = customer.MembershipTypeId;
+                    customerFromDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+                }
                 context.SaveChanges();
 
                 return RedirectToAction("Index", "Customers");
             }
 
-            return RedirectToAction("New");
+            return View("CustomerForm", model);
         }
 
         // GET: Customers
