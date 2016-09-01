@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
 
@@ -6,7 +7,7 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public CustomersController()
         {
@@ -21,13 +22,14 @@ namespace Vidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = context.Customers.ToList();
+            var customers = context.Customers.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
             var customer = context.Customers.SingleOrDefault(c => c.Id == id);
+
             return View(customer);
         }
     }
