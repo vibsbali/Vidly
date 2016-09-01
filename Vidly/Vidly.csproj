@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201609010458510_AddedGenre.Designer.cs">
       <DependentUpon>201609010458510_AddedGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609010504418_AddMovies.cs" />
+    <Compile Include="Migrations\201609010504418_AddMovies.Designer.cs">
+      <DependentUpon>201609010504418_AddMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -311,6 +315,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <None Include="Views\Customers\Details.cshtml" />
     <None Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
     <None Include="Views\Movies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609010458510_AddedGenre.resx">
       <DependentUpon>201609010458510_AddedGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010504418_AddMovies.resx">
+      <DependentUpon>201609010504418_AddMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
