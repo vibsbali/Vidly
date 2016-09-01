@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201609010426462_AddDescriptionToMembershipType.Designer.cs">
       <DependentUpon>201609010426462_AddDescriptionToMembershipType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609010434518_AddedDoB.cs" />
+    <Compile Include="Migrations\201609010434518_AddedDoB.Designer.cs">
+      <DependentUpon>201609010434518_AddedDoB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609010426462_AddDescriptionToMembershipType.resx">
       <DependentUpon>201609010426462_AddDescriptionToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010434518_AddedDoB.resx">
+      <DependentUpon>201609010434518_AddedDoB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

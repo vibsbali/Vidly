@@ -1,3 +1,13 @@
-﻿@model Vidly.Models.Customer
+﻿
+@model Vidly.Models.Customer
+
+
 
 <h1>@Model.Name</h1>
+<ul>
+    <li>Membership Type : @Model.MembershipType.Description</li>
+    @if (Model.DateOfBirth != null)
+    { 
+        <li>Date Of Birth : @Model.DateOfBirth</li>
+    }
+</ul>
