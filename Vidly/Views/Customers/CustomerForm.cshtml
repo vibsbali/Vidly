@@ -29,6 +29,10 @@
         </label>
     </div>
     @Html.HiddenFor(c => c.Customer.Id)
+    @Html.AntiForgeryToken()
     <input class="btn btn-primary" type="submit" value="Save" />
 }
 
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
