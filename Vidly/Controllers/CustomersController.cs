@@ -54,6 +54,7 @@ namespace Vidly.Controllers
                 return RedirectToAction("Index", "Customers");
             }
 
+            model.MembershipTypes = context.MembershipTypes.ToList();
             return View("CustomerForm", model);
         }
 
