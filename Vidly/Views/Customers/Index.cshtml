@@ -32,9 +32,14 @@
     </tbody>
 </table>
 
+
 @section scripts{
+@Scripts.Render("~/bundles/datatable")
     <script>
         $(document).ready(function () {
+            //Calling Datatable 
+            $("#customers").DataTable();
+
             //adding ".js-delete" as filter to click handler so there is only one click handler for the entire table instead of multiple code bases for each button
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
