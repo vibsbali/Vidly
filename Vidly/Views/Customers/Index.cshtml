@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.List<Vidly.Models.Customer>
+﻿@*@model System.Collections.Generic.List<Vidly.Models.Customer>*@
 
 @{
     ViewBag.Title = "title";
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var customer in Model)
+    @*@foreach (var customer in Model)
     {
         <tr>
             <td>
@@ -28,7 +28,7 @@
                 <button data-customerId="@customer.Id" class="btn btn-link js-delete">Delete</button>
             </td>
         </tr>
-    }
+    }*@
     </tbody>
 </table>
 
@@ -38,7 +38,31 @@
     <script>
         $(document).ready(function () {
             //Calling Datatable 
-            $("#customers").DataTable();
+            $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    method: "GET",
+                    dataSrc: ""
+                },
+                columns: [
+                {
+                    data: "name",
+                    render: function(data, type, customer) {
+                        return "<a href='/customers/edit/" + customer.id + "'>" +
+                            customer.name + "</a>";
+                    }
+                },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             //adding ".js-delete" as filter to click handler so there is only one click handler for the entire table instead of multiple code bases for each button
             $("#customers").on("click", ".js-delete", function () {
