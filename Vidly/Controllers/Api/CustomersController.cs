@@ -34,8 +34,9 @@ namespace Vidly.Controllers.Api
             return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
+        //POST /api/customers
         [HttpPost]
-        public IHttpActionResult CreateCustomer([FromBody]CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (ModelState.IsValid)
             {
@@ -46,11 +47,12 @@ namespace Vidly.Controllers.Api
             context.Customers.Add(customer);
             context.SaveChanges();
 
-            return Created($"/api/customers/{customer.Id}", customer);
+            return Created($"/api/customers/{customer.Id}", customerDto);
         }
 
-        [HttpPost]
-        public IHttpActionResult UpdateCustomer(int id, [FromBody]CustomerDto customerDto)
+        //PUT /api/customers/1
+        [HttpPut]
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (ModelState.IsValid)
             {
