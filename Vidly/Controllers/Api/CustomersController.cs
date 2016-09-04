@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using AutoMapper;
+using System.Linq;
 using System.Web.Http;
+using Vidly.DTO;
 using Vidly.Models;
 
 namespace Vidly.Controllers.Api
@@ -15,7 +17,8 @@ namespace Vidly.Controllers.Api
 
         public IHttpActionResult GetCustomers()
         {
-            var customers = context.Customers.ToList();
+            //Added mapping
+            var customers = context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
             return Ok(customers);
         }
 
@@ -28,17 +31,18 @@ namespace Vidly.Controllers.Api
                 return NotFound();
             }
 
-            return Ok(customer);
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
         [HttpPost]
-        public IHttpActionResult CreateCustomer(Customer customer)
+        public IHttpActionResult CreateCustomer([FromBody]CustomerDto customerDto)
         {
             if (ModelState.IsValid)
             {
                 return BadRequest();
             }
 
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
             context.Customers.Add(customer);
             context.SaveChanges();
 
@@ -46,7 +50,7 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpPost]
-        public IHttpActionResult UpdateCustomer(int id, Customer customer)
+        public IHttpActionResult UpdateCustomer(int id, [FromBody]CustomerDto customerDto)
         {
             if (ModelState.IsValid)
             {
@@ -60,10 +64,12 @@ namespace Vidly.Controllers.Api
                 return NotFound();
             }
 
-            customerFromDb.Name = customer.Name;
-            customerFromDb.DateOfBirth = customer.DateOfBirth;
-            customerFromDb.MembershipTypeId = customer.MembershipTypeId;
-            customerFromDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            //This is where we have an existing prebuilt object
+            Mapper.Map(customerDto, customerFromDb);
+            //customerFromDb.Name = customerDto.Name;
+            //customerFromDb.DateOfBirth = customerDto.DateOfBirth;
+            //customerFromDb.MembershipTypeId = customerDto.MembershipTypeId;
+            //customerFromDb.IsSubscribedToNewsLetter = customerDto.IsSubscribedToNewsLetter;
 
             context.SaveChanges();
             return Ok();
