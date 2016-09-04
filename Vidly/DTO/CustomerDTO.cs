@@ -17,5 +17,7 @@ namespace Vidly.DTO
         public DateTime? DateOfBirth { get; set; }
         [Required]
         public int MembershipTypeId { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }
